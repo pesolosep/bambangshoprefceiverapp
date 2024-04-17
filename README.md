@@ -65,8 +65,8 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [X] Commit: `Create SubscriberRequest model struct.`
     -   [X] Commit: `Create Notification database and Notification repository struct skeleton.`
     -   [X] Commit: `Implement add function in Notification repository.`
-    -   [ ] Commit: `Implement list_all_as_string function in Notification repository.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
+    -   [X] Commit: `Implement list_all_as_string function in Notification repository.`
+    -   [X] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
 -   **STAGE 3: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -85,5 +85,12 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+1. In this tutorial, we used RwLock<> to synchronise the use of Vec of Notifications. Explain why it is necessary for this case, and explain why we do not use Mutex<> instead?
+
+- Mutex and RwLock serve different purposes and operate differently. Mutex ensures that only one thread can access a piece of data at a time. In other words, any other thread attempting to use data currently being accessed by one thread must wait until that thread finishes. On the contrary, RwLock works in the opposite manner to Mutex. RwLock allows multiple threads to access data concurrently, even if the data is being used by other threads. Therefore because in our case, where independent threads can access the same subscriber therefore can also access notifications in their respective threads. We can conclude using mutex<> is not ideal in this scenario. 
+
+2. In this tutorial, we used lazy_static external library to define Vec and DashMap as a “static” variable. Compared to Java where we can mutate the content of a static variable via a static function, why did not Rust allow us to do so?
+
+- In Rust, the lazy_static external library enables the definition of variables with static lifetime that are lazily initialized upon first access.Rust's ownership and borrowing rules prevent direct mutable access to static variables, even within static functions, to uphold memory safety and thread safety. Unlike in Java where mutable access to static variables is allowed and controlled by synchronization mechanisms, Rust encourages explicit handling of concurrency through primitives like Mutex, RwLock, or Atomic types for safe concurrent access to shared data. This approach ensures that mutations to shared data in Rust are performed safely and explicitly, adhering to Rust's core principles of memory safety and thread safety.
 
 #### Reflection Subscriber-2
