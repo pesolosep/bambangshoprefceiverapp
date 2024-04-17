@@ -94,3 +94,20 @@ This is the place for you to write reflections:
 - In Rust, the lazy_static external library enables the definition of variables with static lifetime that are lazily initialized upon first access.Rust's ownership and borrowing rules prevent direct mutable access to static variables, even within static functions, to uphold memory safety and thread safety. Unlike in Java where mutable access to static variables is allowed and controlled by synchronization mechanisms, Rust encourages explicit handling of concurrency through primitives like Mutex, RwLock, or Atomic types for safe concurrent access to shared data. This approach ensures that mutations to shared data in Rust are performed safely and explicitly, adhering to Rust's core principles of memory safety and thread safety.
 
 #### Reflection Subscriber-2
+1. Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not, explain why you did not do so. If yes, explain things that you have learned from those other parts of code.
+
+- `lib.rs` functions as the library we create ourselves. In this file, we configure our app starting from creating variables for port name, URL, and ensuring our .env file is correct. Additionally, an interesting thing I discovered after opening lib.rs is that compose_error_response is a custom function rather than a built-in Rust function :D.
+
+2. Since you have completed the tutorial by now and have tried to test your notification system by spawning multiple instances of Receiver, explain how Observer pattern eases you to plug in more subscribers. How about spawning more than one instance of Main app, will it still be easy enough to add to the system?
+
+- With the observer pattern, adding a new subscriber becomes easier because we already have a list of subscribers. If we create more than one instance of the main app, adding subscribers remains easy because each main app has its own observer, thus not sharing notifications between main apps.
+
+3. Have you tried to make your own Tests, or enhance documentation on your Postman collection? If you have tried those features, tell us whether it is useful for your work (it can be your tutorial work or your Group Project).
+
+- As I write this README, I haven't created any testing or modified the Postman Collection yet.
+
+
+
+
+
+
