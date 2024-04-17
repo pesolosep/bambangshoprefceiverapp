@@ -11,7 +11,7 @@ use bambangshop_receiver::{APP_CONFIG, REQWEST_CLIENT, Result, compose_error_res
 use crate::controller::notification;
 use crate::model::notification::Notification;
 use crate::model::subscriber::SubscriberRequest;
-
+use crate::repository::notification::NotificationRepository;
 
 pub struct NotificationService;
 
@@ -87,4 +87,8 @@ impl NotificationService {
         return thread::spawn(move || Self::unsubscribe_request(product_type_clone)).join().unwrap();
     }
 
+    pub fn receive_notification(payload: Notification) -> Result<Notification> {
+        let subscriber_result: Notification = NotificationRepository::add(payload);
+        return Ok(subscriber_result);
+    }
 }
